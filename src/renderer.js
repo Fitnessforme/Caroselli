@@ -46,6 +46,17 @@ function star(ctx,x,y,r,color) {
   ctx.save();ctx.translate(x,y);ctx.fillStyle=color;ctx.beginPath();
   for(let i=0;i<16;i++){const a=i*Math.PI/8,rr=i%2?r*.22:r;ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr);}ctx.closePath();ctx.fill();ctx.restore();
 }
+function editorialArrow(ctx,x,y,color,accent) {
+  ctx.save();ctx.translate(x,y);
+  // A drawn motion mark, not a font glyph: open orbit, sweeping shaft and cut-out head.
+  ctx.strokeStyle=color;ctx.globalAlpha=.3;ctx.lineWidth=2;
+  ctx.beginPath();ctx.arc(0,0,43,.15,Math.PI*1.5);ctx.stroke();ctx.globalAlpha=1;
+  ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle=color;ctx.lineWidth=6;
+  ctx.beginPath();ctx.moveTo(-30,20);ctx.bezierCurveTo(-9,24,10,8,25,-16);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(4,-13);ctx.lineTo(29,-22);ctx.lineTo(30,4);ctx.stroke();
+  ctx.fillStyle=accent;ctx.beginPath();ctx.arc(-31,-22,4,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+}
 export function drawSlide(canvas, slide, index, state) {
   if(state.visualStyle==='photo')return drawPhotoSlide(canvas,slide,index,state);
   const ctx=canvas.getContext('2d');
@@ -68,7 +79,7 @@ export function drawSlide(canvas, slide, index, state) {
   for(let r=140;r<=400;r+=70){ctx.beginPath();ctx.arc(1100,-80,r,0,Math.PI*2);ctx.stroke();}
   for(let y=195;y<435;y+=22)for(let x=1000;x<1080;x+=22){ctx.fillStyle=highlight;ctx.beginPath();ctx.arc(x,y,2,0,Math.PI*2);ctx.fill();}
   ctx.restore();
-  pill(ctx,64,54,385,54,dark);ctx.fillStyle='#ffffff';ctx.font='bold 21px Arial';ctx.fillText('FITNESS / MOVEMENT CLUB',87,89);
+  ctx.fillStyle=ink;ctx.font='bold 19px Arial';ctx.fillText('FITNESS / MOVEMENT CLUB',64,89);
   pill(ctx,871,54,145,54,bold?'#ffffff':dark);ctx.fillStyle=bold?accent:'#ffffff';ctx.font='bold 24px Arial';ctx.textAlign='center';ctx.fillText(`${String(index+1).padStart(2,'0')} / ${String(state.slides.length).padStart(2,'0')}`,943,90);ctx.textAlign='left';
   ctx.font='bold 20px Arial';const labelWidth=Math.min(850,ctx.measureText(slide.label.toLocaleUpperCase('it')).width+38);
   pill(ctx,64,151,labelWidth,43,bold?mix(accent,'#ffffff',.2):pale);ctx.fillStyle=bold?ink:dark;ctx.fillText(slide.label.toLocaleUpperCase('it'),83,180,labelWidth-38);
@@ -99,8 +110,8 @@ export function drawSlide(canvas, slide, index, state) {
   // Decorative callouts and a bold branded footer complete each slide.
   star(ctx,933,460,35,bold?'#ffffff':accent);
   ctx.save();ctx.translate(135,1150);ctx.rotate(-.1);pill(ctx,-8,-30,185,52,dark);ctx.fillStyle='#ffffff';ctx.font='bold 20px Arial';ctx.fillText(index===state.slides.length-1?'SALVA LA GUIDA':'UN PASSO ALLA VOLTA',10,3,151);ctx.restore();
-  pill(ctx,64,1243,952,62,dark);ctx.fillStyle='#ffffff';ctx.font='bold 23px Arial';ctx.fillText(state.brand,88,1283,800);
-  ctx.textAlign='right';ctx.font='34px Arial';ctx.fillText(index===state.slides.length-1?'♥':'→',987,1286);ctx.textAlign='left';
+  ctx.fillStyle=ink;ctx.font='bold 23px Arial';ctx.fillText(state.brand,64,1283,800);
+  editorialArrow(ctx,970,1267,ink,highlight);
 }
 
 function drawPhotoSlide(canvas,slide,index,state) {
@@ -119,7 +130,7 @@ function drawPhotoSlide(canvas,slide,index,state) {
   veil.addColorStop(0,'rgba(10,5,18,.85)');veil.addColorStop(.36,'rgba(10,5,18,.28)');
   veil.addColorStop(.55,'rgba(10,5,18,.08)');veil.addColorStop(.72,'rgba(10,5,18,.72)');veil.addColorStop(1,'rgba(10,5,18,.97)');
   ctx.fillStyle=veil;ctx.fillRect(0,0,1080,1350);
-  pill(ctx,64,55,362,50,accent);ctx.fillStyle=readable(accent);ctx.font='bold 21px Arial';ctx.fillText(photoFor(slide,index).kind==='ai'?'FITNESS / IMMAGINE AI':'FITNESS / PHOTO STORIES',86,88);
+  ctx.fillStyle='#ffffff';ctx.font='bold 18px Arial';ctx.globalAlpha=.8;ctx.fillText(photoFor(slide,index).kind==='ai'?'IMMAGINE AI / FITNESS STORIES':'FITNESS / PHOTO STORIES',64,88);ctx.globalAlpha=1;
   ctx.textAlign='right';ctx.fillStyle='#ffffff';ctx.font='bold 27px Arial';ctx.fillText(`${String(index+1).padStart(2,'0')} / ${String(state.slides.length).padStart(2,'0')}`,1016,91);ctx.textAlign='left';
   ctx.fillStyle='#ffffff';ctx.font='bold 22px Arial';ctx.fillText(slide.label.toLocaleUpperCase('it'),64,182,930);
   const title=fit(ctx,slide.title,940,300,105,40,'bold',1.02);
@@ -134,7 +145,6 @@ function drawPhotoSlide(canvas,slide,index,state) {
   ctx.fillStyle=accent;ctx.fillRect(89,panelTop+24,52,5);
   ctx.fillStyle='#ffffff';ctx.font=`${body.size}px Arial`;
   body.lines.forEach((line,i)=>ctx.fillText(line,91,panelTop+57+i*body.step));
-  ctx.fillStyle=accent;ctx.fillRect(64,1235,952,3);
   ctx.font='bold 24px Arial';ctx.fillStyle='#ffffff';ctx.fillText(state.brand,64,1290,850);
-  ctx.textAlign='right';ctx.font='36px Arial';ctx.fillText(index===state.slides.length-1?'♥':'→',1016,1294);ctx.textAlign='left';
+  editorialArrow(ctx,970,1267,'#ffffff',accent);
 }
