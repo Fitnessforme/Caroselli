@@ -44,8 +44,8 @@ L'editor usa ora un modello con sfondi alternati, titoli grandi e sei illustrazi
 
 Il modello illustrato è stato ridisegnato con figure editoriali grandi, frecce e decorazioni, forme sovrapposte, riquadri di lettura e firma a contrasto. I testi rimangono modificabili. La dicitura in alto nell'app **CAROSELLI ILLUSTRATI · EDIZIONE GRAFICA** permette di distinguere la versione aggiornata. Le illustrazioni includono una palette rosa fissa; i controlli colore modificano sfondi, titoli e dettagli del layout.
 
-## Stile fotografico (in preparazione)
+## Stile fotografico
 
-La modalità **Foto reali** permette di scegliere una foto di repertorio per ogni slide, regolarne inquadratura e zoom e alternarla allo stile illustrato. Testi e firma restano modificabili. Le foto vengono caricate da Unsplash via HTTPS/CORS: se il caricamento fallisce, l'app lo segnala, offre un nuovo tentativo e blocca l'esportazione incompleta. Vedi `PHOTO-CREDITS.md` per fonti e verifica ancora necessaria.
+La modalità **Foto reali** permette di scegliere quattro fotografie di repertorio per ogni slide, regolarne inquadratura e zoom e alternarla allo stile illustrato. Testi e firma restano modificabili. Le immagini sono incluse nella build: non servono account, API o accesso a Unsplash mentre usi l'app. Se un asset non si carica, l'app offre un nuovo tentativo e blocca l'esportazione incompleta. Vedi `PHOTO-CREDITS.md` per le fonti.
 
-Verifiche della modalità fotografica eseguite con fixture locali: errori di rete, riprova, ritaglio, zoom, persistenza, cambio stile, layout mobile ed esportazione ZIP corrispondente all'anteprima. Il caricamento delle foto reali non è ancora verificato: occorre applicare i domini di rete salvati nella configurazione. La funzionalità resta su un branch di preparazione finché tale verifica non è completata.
+Verifiche: caricamento delle quattro fotografie effettive, ritaglio, zoom, persistenza, cambio stile, layout mobile ed esportazione ZIP con sei PNG corrispondenti all'anteprima. Sono stati verificati anche errori e riprova tramite fixture di rete. Le foto sono di repertorio, non dimostrazioni dei singoli esercizi.

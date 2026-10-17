@@ -7,8 +7,8 @@ La libreria fotografica usa fotografie reali servite da Unsplash, non immagini g
 - Forza e allenamento: https://images.unsplash.com/photo-1517836357463-d25dfeac3438
 - Respiro e benessere: https://images.unsplash.com/photo-1506126613408-eca07ce68773
 
-Le foto vengono caricate via HTTPS con CORS per consentire l'esportazione canvas. L'app segnala gli errori e impedisce il download di slide fotografiche senza le immagini caricate. Le scelte, l'inquadratura e lo zoom sono salvati localmente insieme al progetto.
+Le foto sono incluse nel repository e servite dallo stesso sito dell'app. Il caricamento e l'esportazione non dipendono dall'accesso del browser a Unsplash o da CORS di terze parti. L'app segnala gli errori e impedisce il download di slide fotografiche incomplete. Le scelte, l'inquadratura e lo zoom sono salvati localmente insieme al progetto.
 
-## Verifica ancora necessaria
+## Verifica
 
-Il caricamento dalle fonti reali e la disponibilità attuale delle foto non sono ancora stati verificati in questo ambiente: il proxy di rete restituisce 403 per images.unsplash.com. Le aggiunte ai domini consentiti sono state salvate nella bozza di configurazione. Dopo l'applicazione, verificare il caricamento di ogni foto, il ritaglio e lo ZIP esportato prima della pubblicazione di questa funzionalità.
+Tutte e quattro le fonti hanno restituito immagini scaricabili via HTTPS con verifica TLS attiva. Le foto sono state ispezionate visivamente e incluse come asset JPEG in `src/assets/photos/`. Sono state verificate nel browser: caricamento delle quattro foto, ritaglio, zoom, persistenza, cambio stile e ZIP con sei PNG che corrispondono all'anteprima. Nessuna foto è stata generata con AI.
