@@ -1,7 +1,7 @@
 import JSZip from 'jszip';
 import { palettes, generateSlides } from './model.js';
 import { drawSlide, artworkReady, illustrationNames } from './renderer.js';
-import { photos, photoFor, photosReady } from './photos.js';
+import { photos, photoFor, photosReady, loadPhoto } from './photos.js';
 import './style.css';
 
 const initial = {visualStyle: 'photo', topic: 'Mobilità per principianti', brand: '@fitnessforme', palette: {...palettes[0]}, slides: generateSlides('Mobilità per principianti',6), selected: 0};
@@ -44,7 +44,7 @@ $('#confirm-generate').onclick=()=>{const topic=$('#topic').value.trim();if(!top
 $('#previous').onclick=()=>select(Math.max(0,state.selected-1));$('#next').onclick=()=>select(Math.min(state.slides.length-1,state.selected+1));
 function canvasBlob(canvas){return new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('Impossibile creare il PNG.')),'image/png'));}
 function download(blob,name){const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),30000);}
-$('#export-single').onclick=async()=>{try {await currentAssetsReady();draw($('#preview'),state.slides[state.selected],state.selected);download(await canvasBlob($('#preview')),`forma-slide-${String(state.selected+1).padStart(2,'0')}.png`);}catch{notify('Esportazione non riuscita. Riprova.');}};
+$('#export-single').onclick=async()=>{try {await (state.visualStyle==='photo'?loadPhoto(photoFor(state.slides[state.selected],state.selected)):artworkReady);draw($('#preview'),state.slides[state.selected],state.selected);download(await canvasBlob($('#preview')),`forma-slide-${String(state.selected+1).padStart(2,'0')}.png`);}catch{notify('Esportazione non riuscita. Riprova.');}};
 $('#export').onclick=async()=>{const button=$('#export');button.disabled=true;button.textContent='Esportazione…';try{await currentAssetsReady();const zip=new JSZip();const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350;for(let i=0;i<state.slides.length;i++){draw(canvas,state.slides[i],i);zip.file(`slide-${String(i+1).padStart(2,'0')}.png`,await canvasBlob(canvas));}download(await zip.generateAsync({type:'blob'}),'forma-carosello.zip');notify('Carosello esportato: un PNG per ogni slide.');}catch{notify('Esportazione non riuscita. Riprova.');}finally{button.disabled=false;button.innerHTML='↓ <span>Esporta tutte</span>';}};
 $('#illustration').onchange=e=>{if(e.target.value==='auto')delete state.slides[state.selected].illustration;else state.slides[state.selected].illustration=Number(e.target.value);render();save();};
 function updateVisualControls(){
