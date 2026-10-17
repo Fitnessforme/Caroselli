@@ -39,3 +39,7 @@ L'indirizzo previsto dopo una pubblicazione riuscita è `https://fitnessforme.gi
 ## Grafica illustrata
 
 L'editor usa ora un modello con sfondi alternati, titoli grandi e sei illustrazioni fitness locali. La palette **Fucsia e bianco** è quella iniziale per i nuovi progetti; i progetti già salvati mantengono colori e testi. Nel pannello **Falla tua → Illustrazione** puoi scegliere una posa oppure lasciare la selezione automatica. Le illustrazioni sono asset generati inclusi nel repository, non richiedono chiamate AI durante l'uso. L'esportazione attende il caricamento degli asset e usa lo stesso renderer dell'anteprima. Anche le sei slide e lo ZIP nella galleria `mobilita/` sono stati aggiornati con questo modello.
+
+### Edizione grafica
+
+Il modello illustrato è stato ridisegnato con figure editoriali grandi, frecce e decorazioni, forme sovrapposte, riquadri di lettura e firma a contrasto. I testi rimangono modificabili. La dicitura in alto nell'app **CAROSELLI ILLUSTRATI · EDIZIONE GRAFICA** permette di distinguere la versione aggiornata. Le illustrazioni includono una palette rosa fissa; i controlli colore modificano sfondi, titoli e dettagli del layout.
