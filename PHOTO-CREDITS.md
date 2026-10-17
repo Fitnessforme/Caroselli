@@ -11,4 +11,11 @@ Le foto sono incluse nel repository e servite dallo stesso sito dell'app. Il car
 
 ## Verifica
 
-Tutte e quattro le fonti hanno restituito immagini scaricabili via HTTPS con verifica TLS attiva. Le foto sono state ispezionate visivamente e incluse come asset JPEG in `src/assets/photos/`. Sono state verificate nel browser: caricamento delle quattro foto, ritaglio, zoom, persistenza, cambio stile e ZIP con sei PNG che corrispondono all'anteprima. Nessuna foto è stata generata con AI.
+Tutte e sei le fonti hanno restituito immagini scaricabili via HTTPS con verifica TLS attiva. Le foto sono state ispezionate visivamente e incluse come asset JPEG in `src/assets/photos/`. Sono state verificate nel browser: caricamento delle sei foto, ritaglio, zoom, persistenza, cambio stile e ZIP con sei PNG che corrispondono all'anteprima. Nessuna foto è stata generata con AI.
+
+- Mobilità sul tappetino: https://images.unsplash.com/photo-1599901860904-17e6ed7083a0
+- Equilibrio e movimento: https://images.unsplash.com/photo-1599447421416-3414500d18a5
+
+## Immagini fotorealistiche AI
+
+Le sei voci AI (Stretching, Respirazione, Spalle, Anche, Caviglie, Energia) sono state generate con AI su richiesta dell’utente, non sono fotografie di persone reali. Sono incluse in `src/assets/ai-photos/` e identificate come AI sia nel selettore sia sulle slide esportate. Sono immagini editoriali, non dimostrazioni tecniche certificate. Le fotografie di repertorio restano disponibili nelle altre voci.

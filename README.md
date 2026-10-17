@@ -46,6 +46,8 @@ Il modello illustrato è stato ridisegnato con figure editoriali grandi, frecce 
 
 ## Stile fotografico
 
-La modalità **Foto reali** permette di scegliere quattro fotografie di repertorio per ogni slide, regolarne inquadratura e zoom e alternarla allo stile illustrato. Testi e firma restano modificabili. Le immagini sono incluse nella build: non servono account, API o accesso a Unsplash mentre usi l'app. Se un asset non si carica, l'app offre un nuovo tentativo e blocca l'esportazione incompleta. Vedi `PHOTO-CREDITS.md` per le fonti.
+La modalità **Foto reali** permette di scegliere sei fotografie di repertorio per ogni slide, regolarne inquadratura e zoom e alternarla allo stile illustrato. Testi e firma restano modificabili. Le immagini sono incluse nella build: non servono account, API o accesso a Unsplash mentre usi l'app. Se un asset non si carica, l'app offre un nuovo tentativo e blocca l'esportazione incompleta. Vedi `PHOTO-CREDITS.md` per le fonti.
 
-Verifiche: caricamento delle quattro fotografie effettive, ritaglio, zoom, persistenza, cambio stile, layout mobile ed esportazione ZIP con sei PNG corrispondenti all'anteprima. Sono stati verificati anche errori e riprova tramite fixture di rete. Le foto sono di repertorio, non dimostrazioni dei singoli esercizi.
+Verifiche: caricamento delle sei fotografie effettive, ritaglio, zoom, persistenza, cambio stile, layout mobile ed esportazione ZIP con sei PNG corrispondenti all'anteprima. Sono stati verificati anche errori e riprova tramite fixture di rete. Le foto sono di repertorio, non dimostrazioni dei singoli esercizi.
+
+I nuovi caroselli assegnano una foto diversa alle prime sei slide. Per aggiornare un progetto già salvato, usa **Una foto diversa per ogni slide**: i testi sono preservati, le foto vengono ridistribuite e il ritaglio torna al centro. Con sette o otto slide le sei foto iniziano a ripetersi.

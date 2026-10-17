@@ -1,5 +1,5 @@
 import { wrapText } from './model.js';
-import { getPhoto } from './photos.js';
+import { getPhoto, photoFor } from './photos.js';
 
 const artwork = new Image();
 export const artworkReady = new Promise((resolve, reject) => {
@@ -119,7 +119,7 @@ function drawPhotoSlide(canvas,slide,index,state) {
   veil.addColorStop(0,'rgba(10,5,18,.85)');veil.addColorStop(.36,'rgba(10,5,18,.28)');
   veil.addColorStop(.55,'rgba(10,5,18,.08)');veil.addColorStop(.72,'rgba(10,5,18,.72)');veil.addColorStop(1,'rgba(10,5,18,.97)');
   ctx.fillStyle=veil;ctx.fillRect(0,0,1080,1350);
-  pill(ctx,64,55,362,50,accent);ctx.fillStyle=readable(accent);ctx.font='bold 21px Arial';ctx.fillText('FITNESS / PHOTO STORIES',86,88);
+  pill(ctx,64,55,362,50,accent);ctx.fillStyle=readable(accent);ctx.font='bold 21px Arial';ctx.fillText(photoFor(slide,index).kind==='ai'?'FITNESS / IMMAGINE AI':'FITNESS / PHOTO STORIES',86,88);
   ctx.textAlign='right';ctx.fillStyle='#ffffff';ctx.font='bold 27px Arial';ctx.fillText(`${String(index+1).padStart(2,'0')} / ${String(state.slides.length).padStart(2,'0')}`,1016,91);ctx.textAlign='left';
   ctx.fillStyle='#ffffff';ctx.font='bold 22px Arial';ctx.fillText(slide.label.toLocaleUpperCase('it'),64,182,930);
   const title=fit(ctx,slide.title,940,300,105,40,'bold',1.02);
