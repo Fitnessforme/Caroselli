@@ -4,3 +4,5 @@
 .example-link{display:inline-block;margin-top:14px;color:#435f35;font-size:12px;text-underline-offset:4px}
 
 #illustration{margin-bottom:18px}.palettes{flex-wrap:wrap}
+
+#visual-style,#photo{margin-bottom:12px}.palette-label{margin-top:18px}#photo-controls,#illustration-controls{grid-column:1/-1}#photo-controls{margin-bottom:20px}#photo-controls input[type=range]{width:100%;margin:0 0 15px;accent-color:#d00078}.hint a{color:inherit}#photo-state:empty{display:none}

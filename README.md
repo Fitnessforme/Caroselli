@@ -43,3 +43,9 @@ L'editor usa ora un modello con sfondi alternati, titoli grandi e sei illustrazi
 ### Edizione grafica
 
 Il modello illustrato è stato ridisegnato con figure editoriali grandi, frecce e decorazioni, forme sovrapposte, riquadri di lettura e firma a contrasto. I testi rimangono modificabili. La dicitura in alto nell'app **CAROSELLI ILLUSTRATI · EDIZIONE GRAFICA** permette di distinguere la versione aggiornata. Le illustrazioni includono una palette rosa fissa; i controlli colore modificano sfondi, titoli e dettagli del layout.
+
+## Stile fotografico (in preparazione)
+
+La modalità **Foto reali** permette di scegliere una foto di repertorio per ogni slide, regolarne inquadratura e zoom e alternarla allo stile illustrato. Testi e firma restano modificabili. Le foto vengono caricate da Unsplash via HTTPS/CORS: se il caricamento fallisce, l'app lo segnala, offre un nuovo tentativo e blocca l'esportazione incompleta. Vedi `PHOTO-CREDITS.md` per fonti e verifica ancora necessaria.
+
+Verifiche della modalità fotografica eseguite con fixture locali: errori di rete, riprova, ritaglio, zoom, persistenza, cambio stile, layout mobile ed esportazione ZIP corrispondente all'anteprima. Il caricamento delle foto reali non è ancora verificato: occorre applicare i domini di rete salvati nella configurazione. La funzionalità resta su un branch di preparazione finché tale verifica non è completata.

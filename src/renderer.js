@@ -1,4 +1,5 @@
 import { wrapText } from './model.js';
+import { getPhoto } from './photos.js';
 
 const artwork = new Image();
 export const artworkReady = new Promise((resolve, reject) => {
@@ -46,7 +47,9 @@ function star(ctx,x,y,r,color) {
   for(let i=0;i<16;i++){const a=i*Math.PI/8,rr=i%2?r*.22:r;ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr);}ctx.closePath();ctx.fill();ctx.restore();
 }
 export function drawSlide(canvas, slide, index, state) {
+  if(state.visualStyle==='photo')return drawPhotoSlide(canvas,slide,index,state);
   const ctx=canvas.getContext('2d');
+  delete canvas.dataset.photo;
   const {bg,accent,text}=state.palette;
   const bold=index%2===0;
   const background=bold?accent:bg;
@@ -98,4 +101,40 @@ export function drawSlide(canvas, slide, index, state) {
   ctx.save();ctx.translate(135,1150);ctx.rotate(-.1);pill(ctx,-8,-30,185,52,dark);ctx.fillStyle='#ffffff';ctx.font='bold 20px Arial';ctx.fillText(index===state.slides.length-1?'SALVA LA GUIDA':'UN PASSO ALLA VOLTA',10,3,151);ctx.restore();
   pill(ctx,64,1243,952,62,dark);ctx.fillStyle='#ffffff';ctx.font='bold 23px Arial';ctx.fillText(state.brand,88,1283,800);
   ctx.textAlign='right';ctx.font='34px Arial';ctx.fillText(index===state.slides.length-1?'♥':'→',987,1286);ctx.textAlign='left';
+}
+
+function drawPhotoSlide(canvas,slide,index,state) {
+  const ctx=canvas.getContext('2d'),accent=state.palette.accent;
+  const image=getPhoto(slide,index);
+  ctx.fillStyle='#1c1720';ctx.fillRect(0,0,1080,1350);
+  if(image){
+    const zoom=Math.max(1,Math.min(1.8,Number(slide.photoZoom)||1));
+    const scale=Math.max(1080/image.naturalWidth,1350/image.naturalHeight)*zoom;
+    const width=image.naturalWidth*scale,height=image.naturalHeight*scale;
+    const position=Math.max(0,Math.min(100,Number.isFinite(slide.photoPosition)?slide.photoPosition:50))/100;
+    ctx.drawImage(image,-(width-1080)*position,-(height-1350)*position,width,height);
+    canvas.dataset.photo='ready';delete canvas.dataset.artwork;
+  } else { delete canvas.dataset.photo; }
+  const veil=ctx.createLinearGradient(0,0,0,1350);
+  veil.addColorStop(0,'rgba(10,5,18,.85)');veil.addColorStop(.36,'rgba(10,5,18,.28)');
+  veil.addColorStop(.55,'rgba(10,5,18,.08)');veil.addColorStop(.72,'rgba(10,5,18,.72)');veil.addColorStop(1,'rgba(10,5,18,.97)');
+  ctx.fillStyle=veil;ctx.fillRect(0,0,1080,1350);
+  pill(ctx,64,55,362,50,accent);ctx.fillStyle=readable(accent);ctx.font='bold 21px Arial';ctx.fillText('FITNESS / PHOTO STORIES',86,88);
+  ctx.textAlign='right';ctx.fillStyle='#ffffff';ctx.font='bold 27px Arial';ctx.fillText(`${String(index+1).padStart(2,'0')} / ${String(state.slides.length).padStart(2,'0')}`,1016,91);ctx.textAlign='left';
+  ctx.fillStyle='#ffffff';ctx.font='bold 22px Arial';ctx.fillText(slide.label.toLocaleUpperCase('it'),64,182,930);
+  const title=fit(ctx,slide.title,940,300,105,40,'bold',1.02);
+  ctx.fillStyle='#ffffff';ctx.font=`bold ${title.size}px Arial`;
+  title.lines.forEach((line,i)=>ctx.fillText(line,60,222+title.size+i*title.step));
+  if(!image){ctx.font='28px Arial';ctx.fillStyle='#ffffff';ctx.fillText('Foto in caricamento…',64,720);}
+  // Keep the photograph visible through the middle; place copy over an opaque dark panel.
+  const body=fit(ctx,slide.body,878,280,35,21,'normal',1.34);
+  const panelHeight=body.lines.length*body.step+60;
+  const panelTop=1190-panelHeight;
+  ctx.fillStyle='rgba(18,12,23,.94)';ctx.beginPath();ctx.roundRect(64,panelTop,952,panelHeight,22);ctx.fill();
+  ctx.fillStyle=accent;ctx.fillRect(89,panelTop+24,52,5);
+  ctx.fillStyle='#ffffff';ctx.font=`${body.size}px Arial`;
+  body.lines.forEach((line,i)=>ctx.fillText(line,91,panelTop+57+i*body.step));
+  ctx.fillStyle=accent;ctx.fillRect(64,1235,952,3);
+  ctx.font='bold 24px Arial';ctx.fillStyle='#ffffff';ctx.fillText(state.brand,64,1290,850);
+  ctx.textAlign='right';ctx.font='36px Arial';ctx.fillText(index===state.slides.length-1?'♥':'→',1016,1294);ctx.textAlign='left';
 }
