@@ -1,4 +1,5 @@
 export const palettes = [
+  { name: 'Fucsia e bianco', bg: '#ffffff', accent: '#e00087', text: '#731049' },
   { name: 'Lime studio', bg: '#192b25', accent: '#d5fa62', text: '#f7f8ed' },
   { name: 'Terracotta', bg: '#422d2b', accent: '#ffae8f', text: '#fff6ee' },
   { name: 'Blu elettrico', bg: '#19294c', accent: '#a8c8ff', text: '#f3f7ff' },

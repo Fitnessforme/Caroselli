@@ -35,3 +35,7 @@ Nessun backend, database o servizio esterno è necessario per usare l’editor e
 In GitHub, apri **Settings → Pages → Build and deployment → Source** e scegli **GitHub Actions**. Il workflow `.github/workflows/pages.yml` verifica e pubblica l'app a ogni push su `main`; è anche avviabile da **Actions → Pubblica Forma su GitHub Pages → Run workflow**. La configurazione Vite usa percorsi relativi per supportare il percorso `/Caroselli/`.
 
 L'indirizzo previsto dopo una pubblicazione riuscita è `https://fitnessforme.github.io/Caroselli/`. Per repository privati, la disponibilità di Pages dipende dal piano GitHub. La pubblicazione dell'ambiente Codex e quella del sito GitHub Pages sono operazioni separate.
+
+## Grafica illustrata
+
+L'editor usa ora un modello con sfondi alternati, titoli grandi e sei illustrazioni fitness locali. La palette **Fucsia e bianco** è quella iniziale per i nuovi progetti; i progetti già salvati mantengono colori e testi. Nel pannello **Falla tua → Illustrazione** puoi scegliere una posa oppure lasciare la selezione automatica. Le illustrazioni sono asset generati inclusi nel repository, non richiedono chiamate AI durante l'uso. L'esportazione attende il caricamento degli asset e usa lo stesso renderer dell'anteprima. Anche le sei slide e lo ZIP nella galleria `mobilita/` sono stati aggiornati con questo modello.
